@@ -1,0 +1,9 @@
+.vercel
+node_modules
+dist
+*.local
+public/remotion-still*.png
+public/test-render.mp4
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
