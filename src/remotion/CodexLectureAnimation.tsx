@@ -9,6 +9,7 @@ import {
   useCurrentFrame,
 } from 'remotion';
 import {Audio} from '@remotion/media';
+import {slideCaptions, type GuidedCaption} from './captions';
 import {narrations} from './narration';
 import {slides, type FocusPoint, type SlideSpec} from './slides';
 import '../styles.css';
@@ -97,6 +98,48 @@ const Header: React.FC<{slide: SlideSpec; localFrame: number}> = ({slide, localF
   );
 };
 
+const renderCaptionText = (caption: GuidedCaption) => {
+  if (!caption.highlight || !caption.text.includes(caption.highlight)) return caption.text;
+
+  const [before, ...rest] = caption.text.split(caption.highlight);
+  return (
+    <>
+      {before}
+      <strong>{caption.highlight}</strong>
+      {rest.join(caption.highlight)}
+    </>
+  );
+};
+
+const CaptionBar: React.FC<{slideIndex: number; localFrame: number}> = ({slideIndex, localFrame}) => {
+  const localMs = (localFrame / FPS) * 1000;
+  const captions = slideCaptions[slideIndex] ?? [];
+  const caption = captions.find((item) => localMs >= item.startMs && localMs <= item.endMs);
+
+  if (!caption) return null;
+
+  const startFrame = Math.round((caption.startMs / 1000) * FPS);
+  const endFrame = Math.round((caption.endMs / 1000) * FPS);
+  const fadeIn = clampInterpolate(localFrame, [startFrame, startFrame + 10], [0, 1]);
+  const fadeOut = clampInterpolate(localFrame, [endFrame - 10, endFrame], [1, 0]);
+  const show = Math.min(fadeIn, fadeOut);
+
+  return (
+    <div
+      className="captionLayer"
+      style={{
+        opacity: show,
+        transform: `translate(-50%, ${(1 - show) * 18}px)`,
+      }}
+    >
+      <div className="businessCaption">
+        <span className="captionMarker">POINT</span>
+        <p>{renderCaptionText(caption)}</p>
+      </div>
+    </div>
+  );
+};
+
 const CardsStage: React.FC<{slide: SlideSpec; localFrame: number; durationSec: number}> = ({
   slide,
   localFrame,
@@ -159,10 +202,11 @@ const ImageStage: React.FC<{slide: SlideSpec; localFrame: number; durationSec: n
 
 const Scene: React.FC<{
   slide: SlideSpec;
+  slideIndex: number;
   localFrame: number;
   durationFrames: number;
   durationSec: number;
-}> = ({slide, localFrame, durationFrames, durationSec}) => {
+}> = ({slide, slideIndex, localFrame, durationFrames, durationSec}) => {
   const enter = clampInterpolate(localFrame, [0, 22], [0, 1]);
   const exit = clampInterpolate(localFrame, [durationFrames - 34, durationFrames - 1], [1, 0]);
   const opacity = Math.min(enter, exit);
@@ -171,6 +215,7 @@ const Scene: React.FC<{
     <AbsoluteFill className="videoRoot" style={{opacity}}>
       <Header slide={slide} localFrame={localFrame} />
       <ImageStage slide={slide} localFrame={localFrame} durationSec={durationSec} />
+      <CaptionBar slideIndex={slideIndex} localFrame={localFrame} />
     </AbsoluteFill>
   );
 };
@@ -202,7 +247,13 @@ export const CodexLectureAnimation: React.FC = () => {
 
   return (
     <>
-      <Scene slide={slide} localFrame={localFrame} durationFrames={durationFrames} durationSec={durationSec} />
+      <Scene
+        slide={slide}
+        slideIndex={slideIndex}
+        localFrame={localFrame}
+        durationFrames={durationFrames}
+        durationSec={durationSec}
+      />
       <AudioTracks />
     </>
   );

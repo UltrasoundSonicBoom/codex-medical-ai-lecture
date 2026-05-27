@@ -11,6 +11,7 @@
     "remotion:still": "remotion still src/remotion/index.ts CodexLectureAnimation --frame=120 --scale=0.5 public/remotion-still.png"
   },
   "dependencies": {
+    "@remotion/captions": "^4.0.468",
     "@remotion/media": "^4.0.468",
     "@remotion/player": "^4.0.379",
     "react": "^19.0.0",

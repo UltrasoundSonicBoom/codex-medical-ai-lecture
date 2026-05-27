@@ -187,6 +187,57 @@ h2 {
   font-weight: 900;
 }
 
+.captionLayer {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  width: min(1320px, calc(100% - 160px));
+  z-index: 8;
+  transform-origin: center bottom;
+  will-change: opacity, transform;
+}
+
+.businessCaption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  min-height: 86px;
+  padding: 18px 34px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.78);
+  box-shadow: 0 20px 54px rgba(15, 23, 42, 0.24);
+  backdrop-filter: blur(12px);
+}
+
+.captionMarker {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: rgba(232, 102, 91, 0.18);
+  color: #ffb5a8;
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.businessCaption p {
+  margin: 0;
+  color: #ffffff;
+  font-size: 42px;
+  line-height: 1.24;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.businessCaption strong {
+  color: #ff7f70;
+  font-weight: 950;
+}
+
 .smartStage {
   position: absolute;
   inset: 0;
