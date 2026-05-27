@@ -207,7 +207,7 @@ const Scene: React.FC<{
   durationFrames: number;
   durationSec: number;
 }> = ({slide, slideIndex, localFrame, durationFrames, durationSec}) => {
-  const enter = clampInterpolate(localFrame, [0, 22], [0, 1]);
+  const enter = slideIndex === 0 ? 1 : clampInterpolate(localFrame, [0, 22], [0, 1]);
   const exit = clampInterpolate(localFrame, [durationFrames - 34, durationFrames - 1], [1, 0]);
   const opacity = Math.min(enter, exit);
 
