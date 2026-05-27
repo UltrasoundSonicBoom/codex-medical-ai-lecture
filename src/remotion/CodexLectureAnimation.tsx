@@ -133,7 +133,6 @@ const CaptionBar: React.FC<{slideIndex: number; localFrame: number}> = ({slideIn
       }}
     >
       <div className="businessCaption">
-        <span className="captionMarker">POINT</span>
         <p>{renderCaptionText(caption)}</p>
       </div>
     </div>

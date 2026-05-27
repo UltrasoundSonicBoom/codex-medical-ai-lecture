@@ -84,6 +84,8 @@ const promptBySlide: Record<number, PromptSpec> = {
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
+const visibleDownloads = downloads.filter((file) => file.type === 'JPG');
+
 const formatSize = (bytes: number) => {
   if (bytes > 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
   if (bytes > 1024) return `${Math.round(bytes / 1024)}KB`;
@@ -309,7 +311,7 @@ const App: React.FC = () => {
           {activePrompt.files?.length ? (
             <div className="prompt-files">
               {activePrompt.files.map((fileLabel) => {
-                const file = downloads.find((item) => item.label === fileLabel);
+                const file = visibleDownloads.find((item) => item.label === fileLabel);
                 return file ? (
                   <a key={file.href} href={file.href} download>
                     {file.label}
@@ -327,7 +329,7 @@ const App: React.FC = () => {
           <h2>실습에 필요한 파일을 웹에서 바로 받기</h2>
         </div>
         <div className="download-grid">
-          {downloads.map((file) => (
+          {visibleDownloads.map((file) => (
             <a className="download-card" key={file.href} href={file.href} download>
               <span className="file-type">{file.type}</span>
               <strong>{file.label}</strong>
