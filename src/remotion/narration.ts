@@ -152,11 +152,11 @@ export const narrations: NarrationSpec[] = [
     audio: 'slide-09.wav',
     durationSec: 28,
     ctaIntent: '근무표 이미지를 실제 일정 데이터로 바꾸는 과정을 이해시킵니다.',
-    visualRoute: '원본 근무표 전체를 보여준 뒤 날짜와 근무 코드 행을 확대하고, Calendar 후보로 이어지는 흐름을 설명합니다.',
+    visualRoute: '가상 근무표 전체를 보여준 뒤 날짜와 근무 코드 행을 확대하고, Calendar 후보로 이어지는 흐름을 설명합니다.',
     script:
       '세 번째 실습은 근무표 이미지입니다. 이미지는 사람이 눈으로 읽을 수 있지만, 캘린더 앱은 바로 이해하지 못합니다. 그래서 Codex에게 먼저 근무표 이미지를 확인하게 하고, 날짜와 근무 코드를 구조화된 표로 추출하도록 요청합니다. 마지막으로 구글 캘린더에 넣을 수 있는 일정 후보로 정리합니다. 이미지 속 정보를 실제 일정 데이터로 바꾸는 과정입니다.',
     phases: [
-      {from: 0, to: 5, focus: '원본 근무표', motion: '전체 contain 유지', intent: '원본 이미지의 성격을 설명합니다.'},
+      {from: 0, to: 5, focus: '가상 근무표', motion: '전체 contain 유지', intent: '가상 이미지의 성격을 설명합니다.'},
       {from: 5, to: 13, focus: '날짜와 근무 코드', motion: '근무 코드 행으로 강하게 줌인', intent: '추출해야 할 위치를 보입니다.'},
       {from: 13, to: 21, focus: '구조화 후보', motion: '표의 핵심 구간을 따라 팬', intent: '이미지를 데이터로 바꾸는 단계를 말합니다.'},
       {from: 21, to: 28, focus: 'Calendar 이동', motion: '전체로 줌아웃', intent: '캘린더 후보라는 산출물을 남깁니다.'},

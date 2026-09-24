@@ -309,17 +309,10 @@ export const downloads = [
   },
   {
     label: '근무표 이미지',
-    description: 'Google Calendar 실습용 2026년 3월 간호직원근무표',
-    href: '/downloads/2603_schudle_test.jpg',
-    type: 'JPG',
-    size: 61174,
-  },
-  {
-    label: '근무표 실습 ZIP',
-    description: '근무표 이미지와 산출물 묶음',
-    href: '/downloads/2603_schudle_test.zip',
-    type: 'ZIP',
-    size: 12665268,
+    description: 'Google Calendar 실습용 가상 근무표',
+    href: '/assets/schedule-synthetic.svg',
+    type: 'SVG',
+    size: 10281,
   },
   {
     label: 'AI 의료 일자리 Excel',
