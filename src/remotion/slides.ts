@@ -179,7 +179,7 @@ export const slides: SlideSpec[] = [
     id: 9,
     kicker: 'Chapter 3',
     title: '근무표 이미지는 구조화 표와 Calendar 후보로 바꿉니다',
-    asset: 'schedule-original-82_2603.jpeg',
+    asset: 'schedule-synthetic.svg',
     fit: 'contain',
     why: '이미지는 사람이 읽지만 일정 앱은 구조화 데이터가 필요합니다.',
     order: ['이미지 확인', '근무 코드 추출', 'Calendar 후보'],
@@ -187,7 +187,7 @@ export const slides: SlideSpec[] = [
     script: '근무표 이미지는 먼저 근무 코드를 추출하고 구조화 표로 바꾼 뒤 Calendar 후보로 정리합니다.',
     cta: '표 이미지를 일정 데이터로 바꿉니다.',
     focus: [
-      {at: 0, scale: 1.1, x: 0, y: 0, label: '원본 근무표'},
+      {at: 0, scale: 1.1, x: 0, y: 0, label: '가상 근무표'},
       {at: 3, scale: 2.0, x: 0, y: 120, label: '날짜와 근무 코드'},
       {at: 7, scale: 1.65, x: -320, y: 120, label: '구조화 후보'},
       {at: 10, scale: 1.1, x: 0, y: 0, label: 'Calendar로 이동'},
