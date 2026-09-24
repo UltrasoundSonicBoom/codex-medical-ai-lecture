@@ -84,7 +84,7 @@ const promptBySlide: Record<number, PromptSpec> = {
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
-const visibleDownloads = downloads.filter((file) => file.type === 'JPG');
+const visibleDownloads = downloads.filter((file) => file.type === 'SVG');
 
 const formatSize = (bytes: number) => {
   if (bytes > 1024 * 1024) return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
